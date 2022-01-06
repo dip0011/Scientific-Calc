@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calc | JS Practical</title>
+
+    <!-- link css -->
+    <link rel="stylesheet" href="assets/style.css">
+
+
+    <!-- fontawesome icon CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Bootstrap CDN  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+
+    <!-- Calc Container -->
+    <div class="calc d-flex flex-column justfy-content-center">
+
+        <!-- TextBox(Screen) -->
+        <div class="c-row result d-flex flex-row justify-content-around align-itmes-center">
+            <input type="text" name="disp" id="disp" placeholder="Let's CrackIt">
+        </div>
+
+        <!-- DEG, RAD  -->
+        <div class="c-row d-flex flex-row align-itmes-center">
+            <div class="block-primary bg-color btnDeg" onclick="deg()">DEG</div>
+            <div class="block-primary bg-color btnRad" onclick="rad()">RAD</div>
+        </div>
+
+        <!-- MC, MR, M+, M-, MS  -->
+        <div class="c-row d-flex flex-row justify-content-around align-itmes-center">
+            <div class="block bg-color t-bold btnMc" onclick="mc()">MC</div>
+            <div class="block bg-color t-bold btnMr" onclick="mr()">MR</div>
+            <div class="block bg-color t-bold" onclick="mPlus()">M+</div>
+            <div class="block bg-color t-bold" onclick="mMinus()">M-</div>
+            <div class="block bg-color t-bold" onclick="ms()">MS</div>
+        </div> 
+
+        <!-- TrigonoMetry, Function  -->
+        <div class="c-row d-flex flex-row align-itmes-center">
+            <div class="dropdown">
+                <div class="block-text bg-color dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" >
+                    <img width="20" src="assets/img/trigo.png" class="p-1" alt="">TrigonoMetry  
+                </div>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><div class="block dropdown-item" onclick="trigo('sine')">sine</div></li>
+                    <li><div class="block dropdown-item" onclick="trigo('cos')">cos</div></li>
+                    <li><div class="block dropdown-item" onclick="trigo('tan')">tan</div></li>
+                    <li><div class="block dropdown-item" onclick="trigo('cot')">cot</div></li>
+                    <li><div class="block dropdown-item" onclick="trigo('cosec')">cosec</div></li>
+                    <li><div class="block dropdown-item" onclick="trigo('sec')">sec</div></li>
+                </ul>
+            </div>
+            <div class="dropdown">
+                <div class="block-text bg-color dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" >
+                    <img width="20" src="assets/img/func.png" class="p-1" alt="">Function 
+                </div>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><div class="block dropdown-item" onclick="func('random')">Random</div></li>
+                    <li><div class="block dropdown-item" onclick="func('round')">RoundUp</div></li>
+                    <li><div class="block dropdown-item" onclick="func('ceil')">Ceil</div></li>
+                    <li><div class="block dropdown-item" onclick="func('floor')">Floor</div></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- x^3, PI, e, AC, del  -->
+        <div class="c-row d-flex flex-row justify-content-around align-itmes-center">
+            <div class="block" onclick="powThree()">x<sup>3</sup></div>
+            <div class="block" onclick="pi()">&pi;</div>
+            <div class="block" onclick="e()">e</div>
+            <div class="block costum-btn" onClick="clr()">AC</div>
+            <div class="block" onclick="del()">del</div>
+        </div>
+
+        <!-- x^2, 1/x, |x|, exp, mod -->
+        <div class="c-row d-flex flex-row justify-content-around align-itmes-center">
+            <div class="block" onclick="powTwo()">x<sup>2</sup></div>
+            <div class="block" onclick="oneBy()"><sup>1</sup>/<sub>x</sub></div>
+            <div class="block" onclick="absolute()">|x|</div>
+            <div class="block" onclick="exp()">exp</div>
+            <div class="block" onclick="mod()">mod</div>
+        </div>
+
+        <!-- 2-/x, (, ), n!, /  -->
+        <div class="c-row d-flex flex-row justify-content-around align-itmes-center">
+            <div class="block" onclick="root()"><sup>2</sup>&radic;x</div>
+            <div class="block" data-value="(" onclick="addChar(this)">(</div>
+            <div class="block" data-value=")" onclick="addChar(this)">)</div>
+            <div class="block" onclick="fact()">n!</div>
+            <div class="block" data-value="/" onclick="addChar(this)">/</div>
+        </div>
+
+        <!-- x^y, 9, 8, 7, *  -->
+        <div class="c-row d-flex flex-row justify-content-around align-itmes-center">
+            <div class="block" onclick="pow()">x<sup>y</sup></div>
+            <div class="block costum-btn" data-value="9" onclick="addChar(this)">9</div>
+            <div class="block costum-btn" data-value="8" onclick="addChar(this)">8</div>
+            <div class="block costum-btn" data-value="7" onclick="addChar(this)">7</div>
+            <div class="block" data-value="*" onclick="addChar(this)">*</div>
+        </div>
+
+        <!-- 10^x, 4, 5, 6, -  -->
+        <div class="c-row d-flex flex-row justify-content-around align-itmes-center">
+            <div class="block" onclick="tenPow()">10<sup>x</sup></div>
+            <div class="block costum-btn" data-value="4" onclick="addChar(this)">4</div>
+            <div class="block costum-btn" data-value="5" onclick="addChar(this)">5</div>
+            <div class="block costum-btn" data-value="6" onclick="addChar(this)">6</div>
+            <div class="block" data-value="-" onclick="addChar(this)">-</div>
+        </div>
+
+        <!-- log10, 1, 2, 3, +  -->
+        <div class="c-row d-flex flex-row justify-content-around align-itmes-center">
+            <div class="block" onclick="logTen()">log</div>
+            <div class="block costum-btn" data-value="1" onclick="addChar(this)">1</div>
+            <div class="block costum-btn" data-value="2" onclick="addChar(this)">2</div>
+            <div class="block costum-btn" data-value="3" onclick="addChar(this)">3</div>
+            <div class="block" data-value="+" onclick="addChar(this)">+</div>
+        </div>
+
+        <!-- ln, +/-, 0, ., clr  -->
+        <div class="c-row d-flex flex-row justify-content-around align-itmes-center">
+            <div class="block" onclick="log()">ln</div>
+            <div class="block" onclick="plusMinus()"><sup>+</sup>/<sub>-</sub></div>
+            <div class="block costum-btn" data-value="0" onclick="addChar(this)">0</div>
+            <div class="block" data-value="." onclick="addChar(this)">.</div>
+            <div class="block btn-blue" ondblclick="clr()" onclick="result()">=</div>
+        </div>
+
+    </div>
+
+    <!-- link JavaScript -->
+    <script src="assets/script.js"></script>
+
+</body>
+</html>
