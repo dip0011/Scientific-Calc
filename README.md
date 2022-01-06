@@ -1,1 +1,1 @@
-# Scitific-Calc
+# Scientific-Calc
